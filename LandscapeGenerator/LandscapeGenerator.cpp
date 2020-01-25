@@ -2,24 +2,30 @@
 #include <iostream>
 #include <fstream>
 #include "json.hpp"
-using json = nlohmann::json;
+#include "InputOutput.h"
 using namespace std;
 
 int main()
 {
     // read a json file
-    ifstream landscapeDataJson("landscapeObjectsData.json");
-    json landscapeData;
-    landscapeDataJson >> landscapeData;
-
-   // cout << landscapeData[0]["age"] << endl;
+    nlohmann::json test;
+    try {
+        test = InputOutput::readLandscapeUserInput();
+    }
+    catch (const runtime_error& e) {
+        cerr << e.what() << endl;;
+        return -1;
+    }
+    
+    
+    // cout << landscapeData[0]["age"] << endl;
 
    
 
-    /*for (auto& element : landscapeData.items()) {
-        cout << element.key() << " " << element.value()["type"] << endl;
+   /* for (auto& element : test.items()) {
+        cout << element.key() << " " << element.value() << endl;
     }*/
     
-    cout << landscapeData["vascular"][0]["name"] << endl;
-    cout << landscapeData["vascular"][1] << endl;
+   
+
 }

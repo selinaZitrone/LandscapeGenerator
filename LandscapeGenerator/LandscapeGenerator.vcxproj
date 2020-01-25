@@ -147,14 +147,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="InputOutput.cpp" />
+    <ClCompile Include="Landscape.cpp" />
     <ClCompile Include="LandscapeGenerator.cpp" />
+    <ClCompile Include="RandomLandscape.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="landscapeObjectsData.json" />
-    <None Include="test.json" />
+    <None Include="landscapeUserInput2.json" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="InputOutput.h" />
     <ClInclude Include="json.hpp" />
+    <ClInclude Include="Landscape.h" />
+    <ClInclude Include="RandomLandscape.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

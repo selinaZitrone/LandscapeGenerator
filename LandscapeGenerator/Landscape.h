@@ -19,5 +19,6 @@ public:
 	virtual void generateLandscape() = 0;
 	double calculateInfiltration();
 	double calcualteRoughness();
+
 };
 

@@ -9,3 +9,4 @@ double Landscape::calcualteRoughness()
 {
 	return 0.0;
 }
+

@@ -154,7 +154,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="landscapeObjectsData.json" />
-    <None Include="landscapeUserInput2.json" />
+    <None Include="landscapeUserInput.json" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="InputOutput.h" />

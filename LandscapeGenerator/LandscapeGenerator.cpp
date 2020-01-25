@@ -8,23 +8,17 @@ using namespace std;
 int main()
 {
     // read a json file
-    nlohmann::json test;
+    nlohmann::json landscapeElements;
     try {
-        test = InputOutput::readLandscapeUserInput();
+        landscapeElements = InputOutput::readLandscapeUserInput();
     }
     catch (const runtime_error& e) {
         cerr << e.what() << endl;;
         return -1;
     }
-    
-    
-    // cout << landscapeData[0]["age"] << endl;
+   // cout << landscapeElements["LandscapeElements"][0]["category"]<<endl;
 
-   
-
-   /* for (auto& element : test.items()) {
-        cout << element.key() << " " << element.value() << endl;
-    }*/
+    
     
    
 

@@ -38,7 +38,7 @@
     <None Include="landscapeObjectsData.json">
       <Filter>data</Filter>
     </None>
-    <None Include="landscapeUserInput2.json">
+    <None Include="landscapeUserInput.json">
       <Filter>data</Filter>
     </None>
   </ItemGroup>

@@ -151,6 +151,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="landscapeObjectsData.json" />
+    <None Include="test.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="json.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

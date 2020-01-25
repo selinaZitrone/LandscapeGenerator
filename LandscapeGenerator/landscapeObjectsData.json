@@ -1,51 +1,35 @@
-[
-  {
-    "type": "soil",
-    "subtypes": [
-      {
-        "name": "lS",
-        "ksat": 3.5,
-        "roughness": 0.5
-      },
-      {
-        "name": "sS",
-        "ksat": 60,
-        "roughness": 0.2
-      }
-    ]
+{
+  "lS": {
+    "category": "soil",
+    "ksat": 60,
+    "roughness": 0.5
   },
-  {
-    "type": "vascular",
-    "subtypes": [
-      {
-        "name": "shrub",
-        "roughness": 1.5
-      },
-      {
-        "name": "grass",
-        "roughness": 3
-      }
-    ]
+  "sS": {
+    "category": "soil",
+    "ksat": 120,
+    "roughness": 0.5
   },
-  {
-    "type": "biocrust",
-    "subtypes": [
-      {
-        "name": "lichen",
-        "ksat": 2,
-        "roughness": 0.5
-      },
-      {
-        "name": "moss",
-        "ksat": 10,
-        "roughness": 0.9
-      },
-      {
-        "name": "cyano",
-        "ksat": 3,
-        "roughness": 0.1
-      }
-    ]
+  "lichen": {
+    "category": "crust",
+    "ksat": 2,
+    "roughness": 0.9
+  },
+  "moss": {
+    "category": "crust",
+    "ksat": 10,
+    "roughness": 3
+  },
+  "cyano": {
+    "category": "crust",
+    "ksat": 5,
+    "roughness": 0.1
+  },
+  "grass": {
+    "category": "vascular",
+    "roughness": 5
+  },
+  "shrub": {
+    "category": "vascular",
+    "roughness":  3
   }
- 
-]
+}

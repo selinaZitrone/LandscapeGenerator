@@ -1,0 +1,24 @@
+{
+  "LandscapeElements": [
+    {
+      "category": "soil",
+      "name": "lS",
+      "coverPercentage": 100
+    },
+    {
+      "category": "crust",
+      "name": "moss",
+      "coverPercentage": 50
+    },
+    {
+      "category": "crust",
+      "name": "lichen",
+      "coverPercentage": 10
+    },
+    {
+      "category": "vascular",
+      "name": "shrub",
+      "coverPercentage":  10
+    }
+  ]
+}

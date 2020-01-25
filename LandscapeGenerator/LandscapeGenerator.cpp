@@ -1,18 +1,25 @@
 // LandscapeGenerator.cpp : This file contains the 'main' function. Program execution begins and ends there.
 #include <iostream>
+#include <fstream>
+#include "json.hpp"
+using json = nlohmann::json;
+using namespace std;
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    // read a json file
+    ifstream landscapeDataJson("landscapeObjectsData.json");
+    json landscapeData;
+    landscapeDataJson >> landscapeData;
+
+   // cout << landscapeData[0]["age"] << endl;
+
+   
+
+    /*for (auto& element : landscapeData.items()) {
+        cout << element.key() << " " << element.value()["type"] << endl;
+    }*/
+    
+    cout << landscapeData["vascular"][0]["name"] << endl;
+    cout << landscapeData["vascular"][1] << endl;
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file

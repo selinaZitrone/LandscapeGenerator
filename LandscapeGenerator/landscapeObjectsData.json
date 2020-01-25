@@ -1,0 +1,51 @@
+[
+  {
+    "type": "soil",
+    "subtypes": [
+      {
+        "name": "lS",
+        "ksat": 3.5,
+        "roughness": 0.5
+      },
+      {
+        "name": "sS",
+        "ksat": 60,
+        "roughness": 0.2
+      }
+    ]
+  },
+  {
+    "type": "vascular",
+    "subtypes": [
+      {
+        "name": "shrub",
+        "roughness": 1.5
+      },
+      {
+        "name": "grass",
+        "roughness": 3
+      }
+    ]
+  },
+  {
+    "type": "biocrust",
+    "subtypes": [
+      {
+        "name": "lichen",
+        "ksat": 2,
+        "roughness": 0.5
+      },
+      {
+        "name": "moss",
+        "ksat": 10,
+        "roughness": 0.9
+      },
+      {
+        "name": "cyano",
+        "ksat": 3,
+        "roughness": 0.1
+      }
+    ]
+  }
+ 
+]

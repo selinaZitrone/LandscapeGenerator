@@ -30,3 +30,10 @@
 *.exe
 *.out
 *.app
+
+# Debug and Release folder
+LandscapeGenerator/Debug
+LandscapeGenerator/Release
+Debug/
+Release/
+

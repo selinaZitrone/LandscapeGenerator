@@ -1,11 +1,12 @@
 #pragma once
 #include <vector>
+#include "json.hpp"
 
 using namespace std;
 
 class Landscape
 {
-private:
+protected:
 	int size;
 
 	vector<vector<bool>> soilMaps;
@@ -16,7 +17,7 @@ private:
 	vector<double> roughnessMap;
 
 public:
-	virtual void generateLandscape() = 0;
+	virtual void generateLandscape(nlohmann::json landscapeElements) = 0;
 	double calculateInfiltration();
 	double calcualteRoughness();
 

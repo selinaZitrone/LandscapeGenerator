@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <utility>
 #include "json.hpp"
 
 using namespace std;
@@ -9,9 +10,9 @@ class Landscape
 protected:
 	int size;
 
-	vector<vector<bool>> soilMaps;
-	vector<vector<double>> crustMaps;
-	vector<vector<double>> vascularMaps;
+	vector< pair <string, vector<bool>> > soilMaps;
+	vector<pair <string, vector<double>>> crustMaps;
+	vector<pair <string, vector<double>>> vascularMaps;
 
 	vector<double> infiltrationMap;
 	vector<double> roughnessMap;

@@ -33,6 +33,9 @@
     <ClCompile Include="InputOutput.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="UserInteraction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="landscapeObjectsData.json">
@@ -53,6 +56,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="InputOutput.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInteraction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

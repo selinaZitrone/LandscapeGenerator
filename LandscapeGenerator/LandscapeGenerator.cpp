@@ -7,6 +7,10 @@ using namespace std;
 
 int main()
 {
+    
+    int size;
+    cout << "How large should your landscape be? Enter an integer number n, the generated landscape will be a square of n x n cells" << endl;
+    cin >> size;
     // read a json file
     nlohmann::json landscapeElements;
     try {

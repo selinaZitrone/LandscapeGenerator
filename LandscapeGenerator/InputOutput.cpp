@@ -18,6 +18,7 @@ nlohmann::json InputOutput::readLandscapeUserInput()
 	userInput >> landscapeData;
 	// check if soil percentage is 100%
 	checkSoilPercentage(landscapeData);
+	checkPlantAndCrustPercentage(landscapeData);
 	return landscapeData;
 }
 
@@ -35,9 +36,33 @@ void InputOutput::checkSoilPercentage(json inputToTest)
 	}
 	// give a warning if percentages are too high
 	if (percentageSum != 100) {
-		cerr << "WARNING: Sum of percentage of soil coverage should be 100% but is 90% " << percentageSum << " instead" << endl;
+		cerr << "WARNING: Sum of percentage of soil coverage has to be 100%" << percentageSum << " instead" << endl;
 		cerr << "Your output might not make sense!" << endl;
 	}
+}
+
+void InputOutput::checkPlantAndCrustPercentage(json inputToTest)
+{
+	int vascularPercentage = 0;
+	int crustPercentage = 0;
+	for (auto& element : inputToTest["LandscapeElements"]) {
+		if (element["category"] == "vascular") {
+			vascularPercentage += element["coverPercentage"];
+		}
+		if (element["category"] == "crust") {
+			crustPercentage += element["coverPercentage"];
+		}
+	}
+	// give a warning if percentages are too high
+	if (vascularPercentage + crustPercentage > 100) {
+		cerr << "WARNING: Percentage sum of crust and vascular cannot exceed 100%" << vascularPercentage + crustPercentage << " instead" << 
+			"(crustcover: " << crustPercentage << "%, vascular cover: "<< vascularPercentage << ")" << endl;
+		cerr << "Your output might not make sense!" << endl;
+	}
+	if (vascularPercentage + crustPercentage > 100) {
+		cout << "Total crust cover: " << crustPercentage << "%, total vascular cover: " << vascularPercentage << "%" << endl;
+	}
+
 }
 
 void InputOutput::writeMapToFile()

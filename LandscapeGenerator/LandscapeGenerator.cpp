@@ -7,10 +7,10 @@ using namespace std;
 
 int main()
 {
-    
-    
+
     // read a json file
     nlohmann::json landscapeElements;
+
     try {
         landscapeElements = InputOutput::readLandscapeUserInput();
     }

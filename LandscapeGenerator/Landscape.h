@@ -2,6 +2,9 @@
 #include <vector>
 #include <utility>
 #include "json.hpp"
+#include <variant>
+#include <map>
+
 
 using namespace std;
 
@@ -10,10 +13,14 @@ class Landscape
 protected:
 	int size;
 
-	vector< pair <string, vector<bool>> > soilMaps;
-	vector<pair <string, vector<double>>> crustMaps;
-	vector<pair <string, vector<double>>> vascularMaps;
+	struct mapStruct {
+		string name;
+		vector<variant<double, bool>> valuesVector;
+	};
 
+	map<string, mapStruct> soilMaps;
+	map<string, mapStruct> crustMaps;
+	map<string, mapStruct> vascularMaps;
 	vector<double> infiltrationMap;
 	vector<double> roughnessMap;
 

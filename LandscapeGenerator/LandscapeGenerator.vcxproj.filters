@@ -61,5 +61,11 @@
     <ClInclude Include="UserInteraction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="LandGenUtilities.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LandGenDataStructures.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

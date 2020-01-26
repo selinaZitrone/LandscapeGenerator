@@ -8,5 +8,12 @@ class RandomLandscape :
 {
 public:
 	void generateLandscape(json landscapeElements) override;
+	RandomLandscape(int sideSize) {
+		this->size = sideSize;
+	}
+
+private:
+	void CreateSoilMaps(json landscapeElements);
+	map<string, double> getIndexOfCategory(json landscapeElements, string categoryName, int cells);
 };
 

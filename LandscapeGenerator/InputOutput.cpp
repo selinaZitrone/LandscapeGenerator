@@ -8,17 +8,18 @@ using namespace std;
  *  Check if json file landscapeUserInput.json exists
  * and read it, check soil percentage and plant percantage
  ***********************************************/
-nlohmann::json InputOutput::readLandscapeUserInput()
+nlohmann::json InputOutput::readLandscapeUserInput(string fileName)
 {
-	ifstream userInput("landscapeUserInput.json");
+	ifstream userInput(fileName);
 	if (userInput.fail()) {
-		throw runtime_error("Error: File landscapeUserInput.json could not be opened, please check if it exists");
+		throw runtime_error("Error: File " + fileName + " could not be opened, please check if it exists");
 	}
 	nlohmann::json landscapeData;
 	userInput >> landscapeData;
 	// check if soil percentage is 100%
 	checkSoilPercentage(landscapeData);
 	checkPlantAndCrustPercentage(landscapeData);
+	cout << "File " + fileName + " has been loaded." << endl << endl;
 	return landscapeData;
 }
 

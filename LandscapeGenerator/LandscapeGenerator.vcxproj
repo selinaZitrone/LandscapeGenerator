@@ -159,8 +159,10 @@
     <None Include="landscapeUserInput.json" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="LandGenDataStructures.h" />
     <ClInclude Include="InputOutput.h" />
     <ClInclude Include="json.hpp" />
+    <ClInclude Include="LandGenUtilities.h" />
     <ClInclude Include="Landscape.h" />
     <ClInclude Include="RandomLandscape.h" />
     <ClInclude Include="UserInteraction.h" />

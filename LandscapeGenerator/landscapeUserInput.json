@@ -2,13 +2,18 @@
     "LandscapeElements": [
         {
             "category": "soil",
-            "name": "lS",
-            "coverPercentage": 60
+            "name": "sS",
+            "coverPercentage": 45
         },
         {
             "category": "soil",
-            "name": "sS",
+            "name": "lS",
             "coverPercentage": 40
+        },
+        {
+            "category": "soil",
+            "name": "kA",
+            "coverPercentage": 15
         },
         {
             "category": "crust",
@@ -24,6 +29,11 @@
             "category": "vascular",
             "name": "shrub",
             "coverPercentage": 10
+        },
+        {
+            "category": "vascular",
+            "name": "alessio",
+            "coverPercentage": 30
         }
     ]
 }

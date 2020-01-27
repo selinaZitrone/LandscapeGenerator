@@ -13,6 +13,13 @@ using namespace std;
 #include <filesystem>
 namespace fs = std::filesystem;
 
+/********************************************//**
+ *  ask for the path of the json file with the 
+ *	information on the landscape
+ *	if path does not contain a json file, error message 
+ *	and ask user to enter a new path
+ ***********************************************/
+
 string askForPath() {
 	char path[120];
 
@@ -41,6 +48,11 @@ string askForPath() {
 		return askForPath();
 	}
 }
+
+/********************************************//**
+ *  ask for the the name of the json file in the path
+ *	which contains the information on the landscape
+ ***********************************************/
 
 nlohmann::json askForJsonName(string jsonPath) {
 	cout << "Found following files:" << endl;
@@ -72,6 +84,11 @@ nlohmann::json askForJsonName(string jsonPath) {
 	}
 }
 
+
+/********************************************//**
+ *  ask user for grid size for the map output
+ ***********************************************/
+
 unsigned int askForAreaSize() {
 	unsigned int areaSize;
 	cout << endl << "Please define the dimension of the surface (one integer to define the size of one side of the square area)" << endl;
@@ -82,7 +99,9 @@ unsigned int askForAreaSize() {
 	else {
 		cout << endl;
 		cout << "Invalid entry, it has to be a positive integer." << endl << endl;
+		// clear error flags
 		cin.clear();
+		// ignore characters from the read buffer (until '\n' or INT_MAX)
 		cin.ignore(INT_MAX, '\n');
 		return askForAreaSize();
 	}

@@ -10,7 +10,11 @@
 #include <iostream>
 
 using namespace std;
-
+/********************************************//**
+ *  generate the maps for soil, crust and vascular
+ *	with the specified user in put and populate the landscapte
+ *	with one map for each type of soil, crust and vascular
+ ***********************************************/
 void RandomLandscape::generateLandscape(json landscapeElements)
 {
 	CreateSoilMaps(landscapeElements);

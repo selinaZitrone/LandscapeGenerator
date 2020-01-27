@@ -6,7 +6,7 @@ using namespace std;
 
 /********************************************//**
  *  Check if json file landscapeUserInput.json exists
- * and read it, check soil percentage and plant percantage
+ *	and read it, check soil percentage and plant percantage
  ***********************************************/
 nlohmann::json InputOutput::readLandscapeUserInput(string fileName)
 {

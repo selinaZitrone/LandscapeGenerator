@@ -10,6 +10,7 @@
 #include <iostream>
 
 using namespace std;
+
 /********************************************//**
  *  generate the maps for soil, crust and vascular
  *	with the specified user in put and populate the landscapte
@@ -26,12 +27,7 @@ void RandomLandscape::generateLandscape(json landscapeElements)
 	map<string, double> crustTypes = getIndexOfCategory(landscapeElements, "crust", cells);
 	map<string, double> vascularTypes = getIndexOfCategory(landscapeElements, "vascular", cells);
 
-	// TO DO: transform prozent in number of cells            <===============================
-	// the int by SOILTYPES are actual cells!!!
-
-
-
-	// popuplate the mapStruct
+	// popuplate the mapStruct for crusts (with 0)
 
 	for (pair<string, double> t : crustTypes) {
 		mapStruct newMap;
@@ -44,6 +40,9 @@ void RandomLandscape::generateLandscape(json landscapeElements)
 			this->crustMaps[t.first].valuesVector.begin(), cells, 0
 		);
 	}
+
+
+	// popuplate the mapStruct for vascular vegetation (with 0)
 
 	for (pair<string, double> t : vascularTypes) {
 		mapStruct newMap;
@@ -58,7 +57,7 @@ void RandomLandscape::generateLandscape(json landscapeElements)
 		
 	}
 
-	// this will be used to check the general coverage
+	// this will be used to check the total coverage
 	vector<double> coverageOverview;
 	coverageOverview.insert(
 		coverageOverview.begin(), cells, 0
@@ -69,14 +68,14 @@ void RandomLandscape::generateLandscape(json landscapeElements)
 		indexesLowerThanOne.push_back(i);
 	}
 
-
+	// populate the crust maps with random cover values
 
 	for (pair<string, double> t : crustTypes) {
-		while (t.second > 0 && indexesLowerThanOne.size() > 0) { // and the coverage is not full!!!
-			double toDistribute = (double)rand() / RAND_MAX;
+		while (t.second > 0 && indexesLowerThanOne.size() > 0) {	// while there is still cover to distribute and the coverage is not full
+			double toDistribute = (double)rand() / RAND_MAX;		// between 0 and 1
 			int randomIndex = rand() % indexesLowerThanOne.size();
-			if (coverageOverview[indexesLowerThanOne[randomIndex]] < 1) {
-				double toAdd = std::min(toDistribute, 1 - coverageOverview[indexesLowerThanOne[randomIndex]]);
+			if (coverageOverview[indexesLowerThanOne[randomIndex]] < 1) { // if there is still space in the cell that can be populated
+				double toAdd = std::min(toDistribute, std::min(1 - coverageOverview[indexesLowerThanOne[randomIndex]], t.second));
 				t.second -= toAdd;
 				coverageOverview[indexesLowerThanOne[randomIndex]] += toAdd;
 				this->crustMaps[t.first].valuesVector[indexesLowerThanOne[randomIndex]] += toAdd;
@@ -87,12 +86,14 @@ void RandomLandscape::generateLandscape(json landscapeElements)
 		}
 	}
 
+	// do the same with the vascular plant types (TODO: extract function for cover distribution)
+
 	for (pair<string, double> t : vascularTypes) {
-		while (t.second > 0 && indexesLowerThanOne.size() > 0) { // and the coverage is not full!!!
+		while (t.second > 0 && indexesLowerThanOne.size() > 0) { 
 			double toDistribute = (double)rand() / RAND_MAX;
 			int randomIndex = rand() % indexesLowerThanOne.size();
 			if (coverageOverview[indexesLowerThanOne[randomIndex]] < 1) {
-				double toAdd = std::min(toDistribute, 1 - coverageOverview[indexesLowerThanOne[randomIndex]]);
+				double toAdd = std::min(toDistribute, std::min(1 - coverageOverview[indexesLowerThanOne[randomIndex]], t.second));
 				t.second -= toAdd;
 				coverageOverview[indexesLowerThanOne[randomIndex]] += toAdd;
 				this->vascularMaps[t.first].valuesVector[indexesLowerThanOne[randomIndex]] += toAdd;
@@ -105,19 +106,24 @@ void RandomLandscape::generateLandscape(json landscapeElements)
 }
 
 
-
+/********************************************//**
+ *  generate the soil maps:
+ *	1. get entries for soil from the user input
+ *	2. for each soil type create a mapStruct and put it in soilMaps
+ *	3. generate a spreadVector with same size as cells in the landscape
+ *	and enter each soil type as often as it occurs
+ *	4. shuffle the spread vector to get a random landscape configuration
+ *	5. assign the shuffeled position of the cells for each soiltype to
+ *  values vector in the respective soilMap entry
+ ***********************************************/
 
 void RandomLandscape::CreateSoilMaps(json landscapeElements) {
 	
 	// calculate number of cells
 	int cells = this->size * this->size;
 
-	// get index of all types in category and their distribution
+	// get index of all the different soil types and their distribution
 	map<string, double> soilTypes = getIndexOfCategory(landscapeElements, "soil", cells);
-
-	// TO DO: transform prozent in number of cells            <===============================
-	// the int by SOILTYPES are actual cells!!!
-	
 
 	vector<string> spreadVector;
 
@@ -127,7 +133,8 @@ void RandomLandscape::CreateSoilMaps(json landscapeElements) {
 		newMap.size = this->size;
 		// assign the name in the struct
 		newMap.name = t.first;
-		// put the struct in the map, with key = name
+		cout << t.first << " percentage: " << t.second <<  endl;
+		// put the struct in the soilMaps map, with key = name
 		this->soilMaps[t.first] = newMap;
 		spreadVector.insert(spreadVector.begin(), t.second, t.first);
 	}
@@ -150,17 +157,24 @@ void RandomLandscape::CreateSoilMaps(json landscapeElements) {
 	}
 }
 
+
+/********************************************//**
+ *  searches input json for a given category and returns
+ *	a map with an entry for each type with the respective cover
+ *	if a type occurs more than once in the user input then
+ *	its percentages are added
+ ***********************************************/
+
 map<string, double> RandomLandscape::getIndexOfCategory(json landscapeElements, string categoryName, int cells) {
 	map<string, double> toReturn;
 	for (auto& element : landscapeElements["LandscapeElements"]) {
 		if (element["category"] == categoryName) {
-			// check how many different
 			if (toReturn.find(element["name"]) == toReturn.end()) {
-				toReturn[element["name"]] = element["coverPercentage"] * (cells / 100);
+				toReturn[element["name"]] = element["coverPercentage"] * (double(cells) / 100);
 			}
 			else {
-				toReturn[element["name"]] += element["coverPercentage"] * (cells / 100);
-			}
+				toReturn[element["name"]] += element["coverPercentage"] * (double(cells) / 100);
+				}
 
 		}
 	}

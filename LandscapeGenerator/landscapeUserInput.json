@@ -12,7 +12,7 @@
         },
         {
             "category": "soil",
-            "name": "kA",
+            "name": "lS",
             "coverPercentage": 15
         },
         {
@@ -32,7 +32,7 @@
         },
         {
             "category": "vascular",
-            "name": "alessio",
+            "name": "grass",
             "coverPercentage": 30
         }
     ]

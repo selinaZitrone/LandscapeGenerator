@@ -4,6 +4,10 @@
 #include <stdexcept>
 using namespace std;
 
+#include <filesystem>
+namespace fs = std::filesystem;
+
+
 /********************************************//**
  *  Check if json file landscapeUserInput.json exists
  *	and read it, check soil percentage and plant percantage
@@ -66,6 +70,27 @@ void InputOutput::checkPlantAndCrustPercentage(json inputToTest)
 
 }
 
-void InputOutput::writeMapToFile()
+void InputOutput::writeMapToFile(mapStruct map)
 {
+	// create outputfile
+	string outfileName = "Results\\" + map.name + ".txt";
+	ofstream outputFile;
+	outputFile.open(outfileName);
+	for (int i = 0; i < map.valuesVector.size(); i++) {
+		if (i % map.size == 0 && i != 0) {
+			outputFile << '\n';
+		}
+		outputFile << map.valuesVector[i] << '\t';
+	}
+}
+
+void InputOutput::writeMapsToFile(map<string, mapStruct> maps)
+{
+	// check  if output folder "Results exists and if not create it"
+	if (!fs::exists("Results")) { 
+		fs::create_directory("Results");
+	}
+	for (pair<string, mapStruct> map : maps) {
+		writeMapToFile(map.second);
+	}
 }

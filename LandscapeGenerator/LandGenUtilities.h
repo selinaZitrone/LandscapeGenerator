@@ -26,7 +26,6 @@ string askForPath() {
 	cout << "Please insert the path of the folder containing the data in json format: " << endl;
 	cin.getline(path, sizeof(path));
 	cout << " " << endl;
-
 	try {
 		for (const auto & entry : fs::directory_iterator(path)) {
 
@@ -134,4 +133,5 @@ void printMaps(map<string, mapStruct> mapToPrint, string title) {
 		cout << "---" << endl << endl;
 	}
 }
+
 

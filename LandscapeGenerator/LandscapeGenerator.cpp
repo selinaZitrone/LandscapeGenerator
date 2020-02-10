@@ -25,7 +25,11 @@ int main()
 	map<string, mapStruct> crustMaps = firstRandom.getAllCrustMaps();
 	map<string, mapStruct> vascularMaps = firstRandom.getAllVascularMaps();
 
-	printMaps(soilMaps, "SOIL MAPS");
-	printMaps(crustMaps, "CRUST MAPS");
-	printMaps(vascularMaps, "VASCULAR MAPS");
+	//printMaps(soilMaps, "SOIL MAPS");
+	//printMaps(crustMaps, "CRUST MAPS");
+	//printMaps(vascularMaps, "VASCULAR MAPS");
+
+	InputOutput::writeMapsToFile(soilMaps);
+	InputOutput::writeMapsToFile(crustMaps);
+	InputOutput::writeMapsToFile(vascularMaps);
 }
